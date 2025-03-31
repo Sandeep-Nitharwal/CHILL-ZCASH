@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# CHILL-ZCASH
 
-First, run the development server:
+### Installation
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Sandeep-Nitharwal/CHILL-ZCASH.git
+   cd CHILL-ZCASH
+   ```
+2. Install the dependencies:
+
+   ```bash
+   pnpm install
+   ```
+
+### Environment Variables
+
+Create a `.env` file in the root directory of your project and add the necessary environment keys. Here is an example of what your `.env` file might look like:
+
+```plaintext
+NEAR_NETWORK=           #"mainnet" 
+NEAR_RPC_URL=           #"https://rpc.mainnet.near.org"
+NEAR_SLIPPAGE=           #1
+NEAR_WALLET_PUBLIC_KEY=   #"ed25519:-----------------------"
+NEAR_WALLET_SECRET_KEY=   #"ed25519:------------------------------------------------------------------------------"
+NEAR_ADDRESS=             #"abc.near"
+DEFUSE_CONTRACT_ID=       #"intents.near"
+ZCASH_WALLET=             # nodeurl for zcash "http://172.23.0.131:8323"
+EXPORT_DIR_ZCASH=         # location of file used for storing zcash variable used by our UI. - eg - root/abc.txt
+ZCASH_USER=               # Zcash rpc username
+ZCASH_PASSD=              # Zcash rpc password
+ZCASH_ACCOUNT=            # Unified address for zcash account present in nodeurl
+
+COINGECKO_API_URL=          #"https://api.coingecko.com/api/v3"
+COINGECKO_API_KEY=          #API key
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Running the Project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To start the project, run the following command:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm run dev
+```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This will start the development server and open the project in your default web browser.
