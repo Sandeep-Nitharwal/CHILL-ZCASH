@@ -10,6 +10,7 @@
    cd CHILL-ZCASH
    ```
 2. Install the dependencies:
+    node version - 18.19.1
 
    ```bash
    pnpm install
