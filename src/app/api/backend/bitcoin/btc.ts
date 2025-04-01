@@ -7,18 +7,18 @@ import { IntentMessage } from "../types/intents";
 import { ethers } from "ethers";
 import * as readline from 'readline';
 
-// const rl = readline.createInterface({
-//   input: process.stdin,
-//   output: process.stdout
-// });
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
-// const askForInput = (prompt: string): Promise<string> => {
-//   return new Promise((resolve) => {
-//     rl.question(prompt, (answer) => {
-//       resolve(answer);
-//     });
-//   });
-// };
+const askForInput = (prompt: string): Promise<string> => {
+  return new Promise((resolve) => {
+    rl.question(prompt, (answer) => {
+      resolve(answer);
+    });
+  });
+};
 
 export async function request(url: string, body: unknown): Promise<Response> {
     let response: Response
@@ -49,8 +49,8 @@ export async function get_btc_balance(accountId: string) {
       path
     );
 
-    // console.log("Address: ", address);
-    // console.log("Public Key: ", publicKey);
+    console.log("Address: ", address);
+    console.log("Public Key: ", publicKey);
 
     const balance = await BTC.getBalance({ address });
 
@@ -110,9 +110,9 @@ export async function getderivedaddress(): Promise<string>{
 }
 
 
-// flag = true means transfer btc to given recepient_addr
-// flag = false means deposit btc to defuse
-export async function transfer_btc(amountbtc:string, recepient_addr:string, flag:boolean){
+// flag = 1 means transfer btc to given recepient_addr
+// flag = 0 means deposit btc to defuse
+export async function transfer_btc(amountbtc:string, recepient_addr:string, flag:number){
     try {
         const accountId = settings.accountId;
         const path = "bitcoin-1";
@@ -133,7 +133,7 @@ export async function transfer_btc(amountbtc:string, recepient_addr:string, flag
         
         var recepient = (await deposit_address.json()).result.address;
         
-        if(flag){
+        if(flag === 1 ){
           recepient = recepient_addr;
         }
         
@@ -153,23 +153,22 @@ export async function transfer_btc(amountbtc:string, recepient_addr:string, flag
 
         console.log("line 136");
         console.log(amount,balance,token,address);
-        // await askForInput("hi");
-    
+        
         if (balance < amount) {
           return "";
         }
         
-
-        async function chainSignature() {
         
-            const { psbt, utxos } = await BTC.createTransaction({
-              from: address,
-              to: recepient,
-              amount
-            });
-            console.log("line170");
-            console.log(psbt);
-            console.log(utxos);
+        async function chainSignature() {
+          
+          const { psbt, utxos } = await BTC.createTransaction({
+            from: address,
+            to: recepient,
+            amount
+          });
+          console.log("line 170");
+          console.log(psbt,utxos);
+          await askForInput("hi");
             // sessionStorage.setItem(
             //   "btc_transaction",
             //   JSON.stringify({

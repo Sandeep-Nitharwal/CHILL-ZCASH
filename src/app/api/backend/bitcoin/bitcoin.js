@@ -6,7 +6,6 @@ import { MPC_CONTRACT } from './kdf/mpc';
 import { connect,KeyPair,keyStores,utils } from "near-api-js";
 import { Wallet } from "./near-wallet"
 import { settings } from '../utils/environment';
-import { console } from 'inspector';
 
 export class Bitcoin {
   name = 'Bitcoin';
@@ -46,12 +45,12 @@ export class Bitcoin {
   createTransaction = async ({ from: address, to, amount }) => {
     let utxos = await this.getUtxos({ address });
     // if (!utxos) return
-    console.dir(utxos);
 
     // Use the utxo with the highest value
     utxos.sort((a, b) => b.value - a.value);
     utxos = [utxos[0]];
-    console.log(utxos);
+    console.log("here");
+
     const psbt = await constructPsbt(address, utxos, to, amount, this.networkId);
     // if (!psbt) return
 
@@ -301,8 +300,6 @@ async function constructPsbt(
   const sats = parseInt(amount);
 
   // Check balance (TODO include fee in check)
-  console.log("line 303");
-  console.log(sats , utxos[0].value );
   if (utxos[0].value < sats) {
     return console.log('insufficient funds');
   }
